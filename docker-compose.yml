@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  jupyterlab:
+    image: jupyter/datascience-notebook:latest
+    restart: always
+    ports:
+      - 8888:8888
+    volumes:
+      - .:/home/jovyan/work
+    environment:
+      JUPYTER_ENABLE_LAB: yes
+      GRANT_SUDO: yes
+    command: start-notebook.sh --NotebookApp.token=''
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
